@@ -1,0 +1,208 @@
+<div id="top-header">
+  <div class="container">
+    <ul class="header-links pull-left">
+      <li>
+        <a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a>
+      </li>
+    </ul>
+    <ul class="header-links pull-right">
+      <li>
+        <a href="#"><i class="fa fa-dollar"></i> USD</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-user-o"></i> My Account</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- /TOP HEADER -->
+
+<!-- MAIN HEADER -->
+<div id="header">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- LOGO -->
+      <div class="col-md-3">
+        <div class="header-logo">
+          <a href="#" class="logo">
+            <img src="./assets/img/logo.png" alt="" />
+          </a>
+        </div>
+      </div>
+      <!-- /LOGO -->
+
+      <!-- SEARCH BAR -->
+      <div class="col-md-6">
+        <div class="header-search">
+          <form [formGroup]="SearchForm">
+            <select class="input-select">
+              <option value="0">All Categories</option>
+              <option value="1">Category 01</option>
+              <option value="1">Category 02</option>
+            </select>
+            <input class="input" placeholder="Search here" />
+            <button class="search-btn">Search</button>
+          </form>
+        </div>
+      </div>
+      <!-- /SEARCH BAR -->
+
+      <!-- ACCOUNT -->
+      <div class="col-md-3 clearfix">
+        <div class="header-ctn">
+          <!-- Wishlist -->
+          <div>
+            <a href="#">
+              <i class="fa fa-heart-o"></i>
+              <span>Your Wishlist</span>
+              <div class="qty">0</div>
+            </a>
+          </div>
+          <!-- /Wishlist -->
+
+          <!-- Cart -->
+          <div class="dropdown">
+            <a
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              aria-expanded="true"
+            >
+              <i class="fa fa-shopping-cart"></i>
+              <span>Your Cart</span>
+              <div class="qty">0</div>
+            </a>
+            <div class="cart-dropdown">
+              <div class="cart-list">
+                <div class="product-widget">
+                  <div class="product-img">
+                    <img src="./img/product01.png" alt="" />
+                  </div>
+                  <div class="product-body">
+                    <h3 class="product-name">
+                      <a href="#">product name goes here</a>
+                    </h3>
+                    <h4 class="product-price"><span class="qty">1x</span>0</h4>
+                  </div>
+                  <button class="delete"><i class="fa fa-close"></i></button>
+                </div>
+              </div>
+              <div class="cart-summary">
+                <small>3 Item(s) selected</small>
+                <h5>SUBTOTAL: {{ 0 | currency: "USD" }}</h5>
+              </div>
+              <div class="cart-btns">
+                <a routerLink="/cart">View Cart</a>
+                <a routerLink="/checkout"
+                  >Checkout <i class="fa fa-arrow-circle-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <!-- /Cart -->
+
+          <!-- Menu Toogle -->
+          <div class="menu-toggle">
+            <a href="#">
+              <i class="fa fa-bars"></i>
+              <span>Menu</span>
+            </a>
+          </div>
+          <!-- /Menu Toogle -->
+        </div>
+      </div>
+      <!-- /ACCOUNT -->
+    </div>
+    <!-- row -->
+  </div>
+  <!-- container -->
+</div>
+<!-- /MAIN HEADER -->
+<!-- /HEADER -->
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+  <!-- container -->
+  <div class="container">
+    <!-- responsive-nav -->
+    <div id="responsive-nav">
+      <!-- NAV -->
+      <ul class="main-nav nav py-3">
+        <li class="active"><a routerLink="/">Home</a></li>
+        <li><a routerLink="/">Chinese</a></li>
+        <li><a routerLink="/">Indian</a></li>
+        <li><a routerLink="/">Thai</a></li>
+        <li><a routerLink="/">English Classics</a></li>
+        <li><a routerLink="/">Arabic</a></li>
+        <li><a routerLink="/">Mediterranean</a></li>
+      </ul>
+      <!-- /NAV -->
+    </div>
+    <!-- /responsive-nav -->
+  </div>
+  <!-- /container -->
+</nav>
+
+<!-- <div class="header">
+  <nav class="header_top">
+    <div class="header_menu">
+      <div class="header_menu_icon" routerLink="/">
+        <mat-icon>menu</mat-icon>
+      </div>
+      <img
+        routerLink="/"
+        src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+        class="header_menu_logo"
+        alt=""
+      />
+      <div class="header_menu_searchbar">
+        <input type="text" class="header_menu_input" />
+        <div class="header_menu_searchbar_icon">
+          <mat-icon>search</mat-icon>
+        </div>
+      </div>
+      <div routerLink="/login" class="header_menu_signin">
+        <span
+          (click)="signOut()"
+          class="header_menu_top_item"
+          *ngIf="auth.isLoggedIn()"
+          >Hello, {{ auth.getUser() }} click here to
+        </span>
+        <span
+          routerLink="/login"
+          class="header_menu_top_item"
+          *ngIf="!auth.isLoggedIn()"
+          >Hello, there!</span
+        >
+        <span *ngIf="auth.isLoggedIn()" class="header_menu_bottom_item"
+          >Click here to log out</span
+        >
+
+        <span *ngIf="!auth.isLoggedIn()" class="header_menu_bottom_item"
+          >Sign Up | Log In</span
+        >
+      </div>
+      <div routerLink="/login" class="header_menu_signin">
+        <span class="header_menu_top_item">Returns</span>
+        <span class="header_menu_bottom_item">& Orders</span>
+      </div>
+      <div routerLink="/checkout" class="header_menu_cart">
+        <mat-icon>shopping_cart</mat-icon>
+        <p class="header_cart_number">{{ shoppingCart.getCartLength() }}</p>
+      </div>
+    </div>
+  </nav>
+  <nav class="header_bottom">
+    <div class="header_bottom_location_text">
+      <span class="header_left_line_one">Delivery to</span>
+      <span class="header_left_line_two"> <Strong>Canada</Strong></span>
+    </div>
+  </nav>
+</div> -->
