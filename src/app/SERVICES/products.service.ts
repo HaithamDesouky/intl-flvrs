@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ProductModelServer } from '../MODELS/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
+export class ProductService {
   private _jsonURL = 'assets/DATA/products.json';
   constructor(private Http: HttpClient) {}
 
-  getJson(): Observable<any> {
-    return this.Http.get(this._jsonURL);
+  getAllProducts(): Observable<any> {
+    let result = this.Http.get(this._jsonURL);
+    console.log('getting results', result);
+    return result;
   }
 }

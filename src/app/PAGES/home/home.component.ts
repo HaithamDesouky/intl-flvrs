@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/SERVICES/api.service';
+import { ProductService } from 'src/app/SERVICES/products.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductModelServer } from 'src/app/MODELS/product.model';
+import { ShoppingCartService } from 'src/app/SERVICES/shopping-cart.service';
 
 @Component({
   selector: 'app-home',
@@ -9,17 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  products: any[] = [];
+  products: ProductModelServer[] = [];
   NewsLetterForm!: FormGroup;
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(
+    private api: ProductService,
+    private router: Router,
+    private shopping_cart: ShoppingCartService
+  ) {}
 
   ngOnInit(): void {
-    this.getProducts();
-  }
-
-  getProducts() {
-    this.api.getJson().subscribe((resp) => {
+    this.api.getAllProducts().subscribe((resp) => {
       this.products = resp;
     });
   }
@@ -28,5 +30,17 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/product', id]).then((product) => {
       product;
     });
+  }
+
+  getSingleProduct(id: number) {
+    return this.products.find((prod) => prod.id === id);
+  }
+
+  getSingleCategory(category: string) {
+    return this.products.filter((prod) => prod.category === category);
+  }
+
+  addToCart(p: any) {
+    this.shopping_cart.addProduct(p);
   }
 }
