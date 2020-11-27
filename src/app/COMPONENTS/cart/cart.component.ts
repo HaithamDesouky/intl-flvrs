@@ -29,7 +29,6 @@ export class CartComponent implements OnInit {
   }
 
   ChangeQuantity(increment: number, product: any) {
-    console.log('from component', product, increment);
     this.shoppingCart.changeQuantity(increment, product);
     this.cartData = this.shoppingCart.get_shopping_cart_items();
     this.updateTotal();

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'src/app/SERVICES/shopping-cart.service';
+import { OrderService } from 'src/app/SERVICES/order.service';
 
 import { Router } from '@angular/router';
 // import { OrderService } from '../../services/order.service';
@@ -13,17 +14,19 @@ import { FormBuilder, NgForm, Validators } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
   cartData: any;
-  cartTotal: Number;
-  // showSpinner: Boolean;
+  cartTotal: number;
+  showSpinner: Boolean;
   checkoutForm: any;
   constructor(
     private shoppingCart: ShoppingCartService,
-    // private orderService: OrderService,
+    public orderService: OrderService,
     private router: Router,
     private spinner: NgxSpinnerService,
     private fb: FormBuilder
   ) {
     this.cartTotal = 0;
+    this.cartData = [];
+    this.showSpinner = false;
 
     this.checkoutForm = this.fb.group({
       firstname: ['', [Validators.required]],
@@ -36,16 +39,28 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
     this.cartData = this.getCartContent();
     this.cartTotal = this.shoppingCart.getTotal();
+    console.log(this.cartData, 'from checkout comp');
   }
 
   getCartContent() {
     return this.shoppingCart.get_shopping_cart_items();
   }
 
-  onCheckout() {
-    // this.spinner.show().then((p) => {
-    //   this.cartService.CheckoutFromCart(1);
-    // });
-    //console.log(this.checkoutForm.value);
+  // onCheckout(){
+
+  //     this.spinner.show().then((p:any) => {
+
+  //     });
+
+  // }
+
+  onSubmit() {
+    this.spinner.show();
+    this.orderService.form.value.Order = this.cartData;
+    let data = this.orderService.form.value;
+
+    this.orderService.createOrder(data).then((res) => {
+      console.log('done');
+    });
   }
 }

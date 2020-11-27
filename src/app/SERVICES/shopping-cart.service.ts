@@ -102,7 +102,6 @@ export class ShoppingCartService {
     let items = this.get_shopping_cart_items();
     let total = items?.reduce((acc: any, item: any) => acc + item.subtotal, 0);
     localStorage.setItem('shopping_cart', JSON.stringify(items));
-    console.log('current total', total);
     return total;
   };
 
@@ -161,4 +160,8 @@ export class ShoppingCartService {
       return localStorage.setItem('shopping_cart', JSON.stringify(items));
     }
   }
+
+  // removeAll(){
+  //   return localStorage.removeItem('shopping_cart',);
+  // }
 }

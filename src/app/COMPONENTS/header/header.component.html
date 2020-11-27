@@ -2,13 +2,15 @@
   <div class="container">
     <ul class="header-links pull-left">
       <li>
-        <a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a>
+        <a href="#"><i class="fa fa-phone"></i> 633736571</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a>
+        <a href="#"
+          ><i class="fa fa-envelope-o"></i> haithamadesouky@gmail.com</a
+        >
       </li>
       <li>
-        <a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a>
+        <a href="#"><i class="fa fa-map-marker"></i> Albacete, Spain</a>
       </li>
     </ul>
     <ul class="header-links pull-right">
@@ -42,14 +44,29 @@
       <!-- SEARCH BAR -->
       <div class="col-md-6">
         <div class="header-search">
-          <form [formGroup]="SearchForm">
-            <select class="input-select">
-              <option value="0">All Categories</option>
-              <option value="1">Category 01</option>
-              <option value="1">Category 02</option>
+          <form [formGroup]="SearchForm" formControlName="searchInput">
+            <select class="input-select" formControlName="category">
+              <option value="">All Categories</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Indian">Indian</option>
+              <option value="Thai">Thai</option>
+              <option value="Arabic">Arabic</option>
+              <option value="Mediterranean">Mediterranean</option>
+              <option value="English">English Classic</option>
             </select>
-            <input class="input" placeholder="Search here" />
-            <button class="search-btn">Search</button>
+            <input
+              class="input"
+              placeholder="Search here"
+              formControlName="searchValue"
+            />
+            <button
+              type="button"
+              class="search-btn"
+              ng-model="searchBox"
+              (click)="onSubmit()"
+            >
+              Search
+            </button>
           </form>
         </div>
       </div>
@@ -93,8 +110,8 @@
                       <a href="#">{{ product?.name }}</a>
                     </h3>
                     <h4 class="product-price">
-                      <span class="qty">{{ product.quantity }} x </span
-                      >{{ product?.price | currency: "USD" }}
+                      <span class="qty">{{ product.quantity }} x </span>$
+                      {{ product?.price }}
                     </h4>
                   </div>
                   <button
@@ -110,9 +127,7 @@
                     >{{ cartData ? cartData.length : 0 }} Item(s)
                     selected</small
                   >
-                  <h5>
-                    TOTAL : {{ shoppingCart.getTotal() | currency: "USD" }}
-                  </h5>
+                  <h5>TOTAL : $ {{ shoppingCart.getTotal() }}</h5>
                 </div>
 
                 <div class="cart-summary" *ngIf="!cartData.length">
@@ -147,12 +162,12 @@
         <!-- NAV -->
         <ul class="main-nav nav py-3">
           <li class="active"><a routerLink="/">Home</a></li>
-          <li><a routerLink="/">Chinese</a></li>
-          <li><a routerLink="/">Indian</a></li>
-          <li><a routerLink="/">Thai</a></li>
-          <li><a routerLink="/">English Classics</a></li>
-          <li><a routerLink="/">Arabic</a></li>
-          <li><a routerLink="/">Mediterranean</a></li>
+          <li><a routerLink="/chinese">Chinese</a></li>
+          <li><a routerLink="/indian">Indian</a></li>
+          <li><a routerLink="/thai">Thai</a></li>
+          <li><a routerLink="/english">English Classics</a></li>
+          <li><a routerLink="/arabic">Arabic</a></li>
+          <li><a routerLink="/mediterranean">Mediterranean</a></li>
         </ul>
         <!-- /NAV -->
       </div>

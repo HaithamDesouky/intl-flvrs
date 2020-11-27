@@ -8,11 +8,11 @@
       <div class="col-md-4 col-xs-6">
         <div class="shop">
           <div class="shop-img">
-            <img src="./assets/img/shop01.png" alt="" />
+            <img src="./assets/img/chinese.jpg" alt="" />
           </div>
           <div class="shop-body">
-            <h3>Laptop<br />Collection</h3>
-            <a href="#" class="cta-btn"
+            <h3>Chinese<br />Collection</h3>
+            <a routerLink="/chinese" class="cta-btn"
               >Shop now <i class="fa fa-arrow-circle-right"></i
             ></a>
           </div>
@@ -24,11 +24,14 @@
       <div class="col-md-4 col-xs-6">
         <div class="shop">
           <div class="shop-img">
-            <img src="./assets/img/shop03.png" alt="" />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/07/Spices_in_an_Indian_market.jpg"
+              alt=""
+            />
           </div>
           <div class="shop-body">
-            <h3>Accessories<br />Collection</h3>
-            <a href="#" class="cta-btn"
+            <h3>Indian<br />Collection</h3>
+            <a routerLink="/indian" class="cta-btn"
               >Shop now <i class="fa fa-arrow-circle-right"></i
             ></a>
           </div>
@@ -40,11 +43,70 @@
       <div class="col-md-4 col-xs-6">
         <div class="shop">
           <div class="shop-img">
-            <img src="./assets/img/shop02.png" alt="" />
+            <img
+              src="https://static.wixstatic.com/media/c7baa0_6970a105a309428d8ca4c78227552839~mv2_d_2800_2240_s_2.jpg/v1/fill/w_1000,h_800,al_c,q_90,usm_0.66_1.00_0.01/c7baa0_6970a105a309428d8ca4c78227552839~mv2_d_2800_2240_s_2.jpg"
+              alt=""
+            />
           </div>
           <div class="shop-body">
-            <h3>Cameras<br />Collection</h3>
-            <a href="#" class="cta-btn"
+            <h3>Thai<br />Collection</h3>
+            <a routerLink="/thai" class="cta-btn"
+              >Shop now <i class="fa fa-arrow-circle-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- /shop -->
+      <!-- shop -->
+      <div class="col-md-4 col-xs-6">
+        <div class="shop">
+          <div class="shop-img">
+            <img
+              src="https://pinkjinn.files.wordpress.com/2019/01/spices-feature-image.jpg?w=620"
+              alt=""
+            />
+          </div>
+          <div class="shop-body">
+            <h3>Middle Eastern<br />Collection</h3>
+            <a routerLink="/arabic" class="cta-btn"
+              >Shop now <i class="fa fa-arrow-circle-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- /shop -->
+
+      <!-- shop -->
+      <div class="col-md-4 col-xs-6">
+        <div class="shop">
+          <div class="shop-img">
+            <img
+              src="https://istrianchef.com/wp-content/uploads/2015/06/hrana-za-srce.jpg"
+              alt=""
+            />
+          </div>
+          <div class="shop-body">
+            <h3>Mediterranean<br />Collection</h3>
+            <a routerLink="/mediterranean" class="cta-btn"
+              >Shop now <i class="fa fa-arrow-circle-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- /shop -->
+
+      <!-- shop -->
+      <div class="col-md-4 col-xs-6">
+        <div class="shop">
+          <div class="shop-img">
+            <img
+              src="https://cdn.britannica.com/s:900x675,c:crop/43/193443-131-17ABE1C9/Union-Jack-flag-Great-Britain-united-kingdom.jpg"
+              alt=""
+            />
+          </div>
+          <div class="shop-body">
+            <h3>British<br />Collection</h3>
+            <a routerLink="/english" class="cta-btn"
               >Shop now <i class="fa fa-arrow-circle-right"></i
             ></a>
           </div>
@@ -67,7 +129,7 @@
       <!-- section title -->
       <div class="col-md-12">
         <div class="section-title">
-          <h3 class="title">New Products</h3>
+          <h3 class="title">Our Products</h3>
         </div>
       </div>
       <!-- /section title -->
@@ -82,6 +144,7 @@
                 [src]="p.image"
                 alt="{{ p.name }}"
                 width="200px"
+                height="300px"
                 class="card-img-top"
                 style="cursor: pointer"
                 (click)="selectProduct(p.id)"
@@ -93,8 +156,8 @@
               </div>
             </div>
             <div class="card-body">
-              <h6>{{ p.description.substr(0, 40) }} ....</h6>
-              <p class="lead">{{ p.price | currency: "USD" }}</p>
+              <h6>{{ p.description }}</h6>
+              <p class="lead">${{ p.price }}</p>
             </div>
 
             <div class="row d-flex justify-content-center border-primary my-3">
@@ -120,52 +183,6 @@
 </div>
 <!-- /SECTION -->
 
-<!-- HOT DEAL SECTION -->
-<div id="hot-deal" class="section">
-  <!-- container -->
-  <div class="container">
-    <!-- row -->
-    <div class="row">
-      <div class="col-md-12">
-        <div class="hot-deal">
-          <ul class="hot-deal-countdown">
-            <li>
-              <div>
-                <h3>02</h3>
-                <span>Days</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>10</h3>
-                <span>Hours</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>34</h3>
-                <span>Mins</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <h3>60</h3>
-                <span>Secs</span>
-              </div>
-            </li>
-          </ul>
-          <h2 class="text-uppercase">hot deal this week</h2>
-          <p>New Collection Up to 50% OFF</p>
-          <a class="primary-btn cta-btn" href="#">Shop now</a>
-        </div>
-      </div>
-    </div>
-    <!-- /row -->
-  </div>
-  <!-- /container -->
-</div>
-<!-- /HOT DEAL SECTION -->
-
 <!-- SECTION -->
 <div class="section">
   <!-- container -->
@@ -185,41 +202,3 @@
 <!-- SECTION -->
 
 <!-- /SECTION -->
-
-<!-- NEWSLETTER -->
-<div id="newsletter" class="section">
-  <!-- container -->
-  <div class="container">
-    <!-- row -->
-    <div class="row">
-      <div class="col-md-12">
-        <div class="newsletter">
-          <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-          <form [formGroup]="NewsLetterForm">
-            <input class="input" type="email" placeholder="Enter Your Email" />
-            <button class="newsletter-btn">
-              <i class="fa fa-envelope"></i> Subscribe
-            </button>
-          </form>
-          <ul class="newsletter-follow">
-            <li>
-              <a href="#"><i class="fa fa-facebook"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-instagram"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-pinterest"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- /row -->
-  </div>
-  <!-- /container -->
-</div>
-<!-- /NEWSLETTER -->

@@ -12,7 +12,6 @@ export class ProductService {
 
   getAllProducts(): Observable<any> {
     let result = this.Http.get(this._jsonURL);
-    console.log('getting results', result);
     return result;
   }
 }

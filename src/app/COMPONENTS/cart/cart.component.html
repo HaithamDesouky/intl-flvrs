@@ -37,7 +37,7 @@
                 <p>{{ product.name }}</p>
               </td>
               <td>
-                <p>{{ product.price | currency: "USD" }}</p>
+                <p>{{ product.price }}</p>
               </td>
               <td>
                 <div
@@ -63,7 +63,7 @@
                 </div>
               </td>
               <td>
-                <p>{{ product.subtotal | currency: "USD" }}</p>
+                <p>$ {{ product.subtotal }}</p>
               </td>
             </tr>
             <tr class="border-0">
@@ -71,7 +71,7 @@
               <td></td>
               <td></td>
               <td>TOTAL</td>
-              <td>{{ cartTotal | currency: "USD" }}</td>
+              <td>$ {{ cartTotal }}</td>
             </tr>
           </tbody>
         </table>

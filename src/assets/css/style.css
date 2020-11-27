@@ -583,7 +583,7 @@ textarea.input {
 }
 
 .cart-dropdown .cart-list {
-  max-height: 180px;
+  max-height: 300px;
   overflow-x: hidden;
   margin-bottom: 15px;
 }
@@ -744,6 +744,7 @@ textarea.input {
   position: relative;
   overflow: hidden;
   margin: 15px 0px;
+  height: 231px;
 }
 
 .shop:before {
