@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 import { HeaderComponent } from './COMPONENTS/header/header.component';
 import { HomeComponent } from './PAGES/home/home.component';
 import { FooterComponent } from './COMPONENTS/footer/footer.component';
@@ -21,6 +24,8 @@ import { firebaseConfig } from './CONFIG/firebase.config';
 import { CartComponent } from './COMPONENTS/cart/cart.component';
 import { ProductComponent } from './COMPONENTS/product/product.component';
 import { ThankyouComponent } from './COMPONENTS/thankyou/thankyou.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -42,11 +47,14 @@ import { ThankyouComponent } from './COMPONENTS/thankyou/thankyou.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NoopAnimationsModule,
     MatIconModule,
     MatCardModule,
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

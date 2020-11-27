@@ -101,11 +101,11 @@
               <div class="col-md-6">
                 <button
                   (click)="addToCart(p)"
-                  [class.disabled]="p.quantity < 1"
-                  [class.button]="p.quantity > 0"
-                  [class.fourth]="p.quantity > 0"
+                  [class.disabled]="p.stock === 0"
+                  [class.button]="p.stock > 0"
+                  [class.fourth]="p.stock > 0"
                 >
-                  {{ p.quantity < 1 ? "NO STOCK" : "Add To Cart" }}
+                  {{ p.stock < 1 ? "NO STOCK" : "Add To Cart" }}
                 </button>
               </div>
             </div>

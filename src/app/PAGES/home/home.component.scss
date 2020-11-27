@@ -3,8 +3,8 @@
   background-color: white;
   border: 2px solid red;
   border-radius: 0.6em;
-  display: flex;
-  align-self: center;
+  display: block;
+  margin: 0 auto;
   font-size: 1rem;
   padding: 0.5em 1.8em;
 
@@ -30,8 +30,8 @@ $turquoise: #1abc9c;
   border: 2px solid $red;
   border-radius: 0.6em;
   color: white;
-  display: flex;
-  align-self: center;
+  display: block;
+  margin: 0 auto;
   font-size: 1rem;
   padding: 0.5em 1.8em;
   text-decoration: none;

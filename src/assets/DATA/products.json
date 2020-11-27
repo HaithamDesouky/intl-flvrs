@@ -5,7 +5,7 @@
     "description": "Microsoft Xbox One X 1Tb Console With Wireless Controller: Xbox One X Enhanced, Hdr, Native 4K, Ultra Hd",
     "price": 450.0,
     "image": "https://images-na.ssl-images-amazon.com/images/I/61H3Od2C64L._SL1400_.jpg",
-    "quantity": 0,
+    "stock": 0,
     "category": "Chinese"
   },
   {
@@ -14,7 +14,7 @@
     "description": "PlayStation 4 Slim 1TB Console - Only On PlayStation Bundle",
     "price": 488.0,
     "image": "https://images-na.ssl-images-amazon.com/images/I/814Cwlg1JaL._SL1500_.jpg",
-    "quantity": 1,
+    "stock": 1,
     "category": "Chinese"
   },
   {
@@ -23,7 +23,7 @@
     "description": "Pro Angular 9: Build Powerful and Dynamic Web Apps 4th ed. Edition",
     "price": 28.88,
     "image": "https://images-na.ssl-images-amazon.com/images/I/418hZfmNkXL._SX348_BO1,204,203,200_.jpg",
-    "quantity": 5,
+    "stock": 5,
     "category": "Chinese"
   },
   {
@@ -32,7 +32,7 @@
     "description": "JavaScript: The Definitive Guide: Master the World's Most-Used Programming Language 7th Edition",
     "price": 53.0,
     "image": "https://images-na.ssl-images-amazon.com/images/I/51wijnc-Y8L._SX379_BO1,204,203,200_.jpg",
-    "quantity": 0,
+    "stock": 0,
     "category": "Chinese"
   },
   {
@@ -41,7 +41,7 @@
     "description": "Lavazza Super Crema Whole Bean Coffee Blend, Medium Espresso Roast, 2.2 Pound (Pack of 1)",
     "price": 54.36,
     "image": "https://images-na.ssl-images-amazon.com/images/I/61fpw9inWTL._SL1296_.jpg",
-    "quantity": 3,
+    "stock": 3,
     "category": "Chinese"
   }
 ]

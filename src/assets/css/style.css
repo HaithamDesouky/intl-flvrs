@@ -584,7 +584,7 @@ textarea.input {
 
 .cart-dropdown .cart-list {
   max-height: 180px;
-  overflow-y: scroll;
+  overflow-x: hidden;
   margin-bottom: 15px;
 }
 
@@ -621,6 +621,7 @@ textarea.input {
   font-weight: 700;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
+  margin-bottom: 20px;
 }
 
 .cart-dropdown .cart-btns > a:first-child {
@@ -1175,7 +1176,7 @@ textarea.input {
   text-align: center;
   font-size: 10px;
   padding: 0;
-  background: #260101;
+  background: #a18b3b;
   border: none;
   color: #fff;
 }

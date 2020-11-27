@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -6,61 +8,83 @@ import { Injectable } from '@angular/core';
 export class ShoppingCartService {
   shopping_cart_items: any[] = [];
 
-  constructor() {}
-
-  // handleChangeInQuantity = (lootBox, value) => {
-  //   const basketClone = [...this.state.basket];
-  //   const existingLootBox = basketClone.find(
-  //     item => item.lootBox.name === lootBox.name
-  //   );
-
-  //   if (existingLootBox) {
-  //     const editedLootBox = { ...existingLootBox };
-  //     editedLootBox.quantity += value;
-  //     const index = basketClone.indexOf(existingLootBox);
-  //     if (editedLootBox.quantity > 0) {
-  //       basketClone.splice(index, 1, editedLootBox);
-  //     } else {
-  //       basketClone.splice(index, 1);
-  //     }
-  //   } else if (value > 0) {
-  //     const newLootBox = {
-  //       lootBox,
-  //       quantity: 1
-  //     };
-  //     basketClone.push(newLootBox);
+  constructor(
+    private toast: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   addProduct = (product: any) => {
     let items = this.get_shopping_cart_items();
 
-    if (!items) {
-      this.shopping_cart_items.push({ name: product.name, quantity: 1 });
+    if (!items && product.stock > 0) {
+      this.shopping_cart_items.push({
+        id: product.id,
+        name: product.name,
+        quantity: 1,
+        subtotal: product.price,
+        price: product.price,
+        image: product.image,
+        description: product.description,
+        category: product.category,
+      });
       localStorage.setItem(
         'shopping_cart',
         JSON.stringify(this.shopping_cart_items)
       );
-    } else {
+    } else if (items && product.stock > 0) {
       if (items) {
         let existingItem = items.find(
           (single: any) => single.name == product.name
         );
 
         if (existingItem) {
-          console.log(existingItem, 'running');
           const updatedItem = { ...existingItem };
           updatedItem.quantity++;
+          updatedItem.subtotal = updatedItem.quantity * updatedItem.price;
           const indexOfExistingItem = items.indexOf(existingItem);
-
           items.splice(indexOfExistingItem, 1);
           items.push(updatedItem);
           localStorage.setItem('shopping_cart', JSON.stringify(items));
-        }
-
-        if (!existingItem) {
-          items.push({ name: product.name, quantity: 1 });
+        } else if (!existingItem) {
+          items.push({
+            id: product.id,
+            name: product.name,
+            quantity: 1,
+            subtotal: product.price,
+            price: product.price,
+            image: product.image,
+            description: product.description,
+            category: product.category,
+          });
           localStorage.setItem('shopping_cart', JSON.stringify(items));
         }
       }
+    }
+
+    if (product.stock > 0) {
+      this.toast.success(
+        `${product.name} added to the cart.`,
+        'Product Added',
+        {
+          timeOut: 1500,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          positionClass: 'toast-top-right',
+        }
+      );
+    }
+
+    if (product.stock === 0) {
+      this.toast.error(
+        `Sorry, ${product.name} is out of stock.`,
+        'Out of stock',
+        {
+          timeOut: 1500,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          positionClass: 'toast-top-right',
+        }
+      );
     }
   };
 
@@ -71,23 +95,70 @@ export class ShoppingCartService {
 
   getCartLength = () => {
     let items = this.get_shopping_cart_items();
-    return items ? this.get_shopping_cart_items().length : 0;
+    return items?.reduce((acc: any, item: any) => acc + item.quantity, 0);
   };
 
   getTotal = () => {
     let items = this.get_shopping_cart_items();
-    return items?.reduce((acc: any, item: any) => acc + item.price, 0);
+    let total = items?.reduce((acc: any, item: any) => acc + item.subtotal, 0);
+    localStorage.setItem('shopping_cart', JSON.stringify(items));
+    console.log('current total', total);
+    return total;
   };
 
-  removerItem = (p: any) => {
+  changeQuantity = (product: any, increment: number) => {
+    let items = this.get_shopping_cart_items();
+    const index = items.findIndex((item: any) => item.name === product.name);
+    items[index].quantity = items[index].quantity + increment;
+    items[index].subtotal = items[index].quantity * items[index].price;
+    if (items[index].quantity === 0) {
+      items.splice(index, 1);
+    }
+
+    localStorage.setItem('shopping_cart', JSON.stringify(items));
+  };
+
+  removeItem = (p: any) => {
     console.log('calling remover ', p);
     let items = this.get_shopping_cart_items();
 
-    const index = items.findIndex((item: any) => item.id == p.id);
+    const index = items.findIndex((item: any) => item.name == p.name);
     if (index >= 0) {
       console.log('hitting if');
-      items.splice(index, 1);
+      items[index].quantity -= 1;
+      items[index].subtotal = items[index].quantity * items[index].price;
+
+      if (items[index].quantity === 0) {
+        items.splice(index, 1);
+      }
+
+      this.toast.info(`${p.name} removed from the cart`, 'Product Updated', {
+        timeOut: 1500,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        positionClass: 'toast-top-right',
+      });
+
       return localStorage.setItem('shopping_cart', JSON.stringify(items));
     }
   };
+
+  removeEntireProduct(p: any) {
+    let items = this.get_shopping_cart_items();
+
+    const index = items.findIndex((item: any) => item.name == p.name);
+    if (index >= 0) {
+      console.log('hitting if');
+      items.splice(index, 1);
+
+      this.toast.info(`${p.name} removed from the cart`, 'Product Updated', {
+        timeOut: 1500,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        positionClass: 'toast-top-right',
+      });
+
+      return localStorage.setItem('shopping_cart', JSON.stringify(items));
+    }
+  }
 }

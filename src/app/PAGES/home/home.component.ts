@@ -21,6 +21,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.updateCart();
+  }
+
+  updateCart() {
     this.api.getAllProducts().subscribe((resp) => {
       this.products = resp;
     });
@@ -32,15 +36,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getSingleProduct(id: number) {
+  getSingleProduct(id: Number) {
     return this.products.find((prod) => prod.id === id);
   }
 
-  getSingleCategory(category: string) {
+  getSingleCategory(category: String) {
     return this.products.filter((prod) => prod.category === category);
   }
 
   addToCart(p: any) {
     this.shopping_cart.addProduct(p);
+
+    this.updateCart();
+    this.shopping_cart.getTotal();
   }
 }

@@ -19,7 +19,7 @@ export class CheckoutProductsComponent implements OnInit {
   }
 
   removeItem(p: any) {
-    this.shopping_cart_service.removerItem(p);
+    this.shopping_cart_service.removeItem(p);
     this.deleteEvent.emit(p);
   }
 }

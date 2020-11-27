@@ -77,71 +77,91 @@
             >
               <i class="fa fa-shopping-cart"></i>
               <span>Your Cart</span>
-              <div class="qty">0</div>
+              <div class="qty">{{ getCartLength() || 0 }}</div>
             </a>
             <div class="cart-dropdown">
-              <div class="cart-list">
-                <div class="product-widget">
+              <div class="cart-list" *ngIf="cartData">
+                <div
+                  class="product-widget"
+                  *ngFor="let product of cartData; let i = index"
+                >
                   <div class="product-img">
-                    <img src="./img/product01.png" alt="" />
+                    <img src="{{ product?.image }}" alt="" width="20px" />
                   </div>
                   <div class="product-body">
                     <h3 class="product-name">
-                      <a href="#">product name goes here</a>
+                      <a href="#">{{ product?.name }}</a>
                     </h3>
-                    <h4 class="product-price"><span class="qty">1x</span>0</h4>
+                    <h4 class="product-price">
+                      <span class="qty">{{ product.quantity }} x </span
+                      >{{ product?.price | currency: "USD" }}
+                    </h4>
                   </div>
-                  <button class="delete"><i class="fa fa-close"></i></button>
+                  <button
+                    class="delete"
+                    (click)="shoppingCart.removeItem(product)"
+                  >
+                    <i class="fa fa-close"></i>
+                  </button>
+                </div>
+
+                <div class="cart-summary" *ngIf="cartData">
+                  <small
+                    >{{ cartData ? cartData.length : 0 }} Item(s)
+                    selected</small
+                  >
+                  <h5>
+                    TOTAL : {{ shoppingCart.getTotal() | currency: "USD" }}
+                  </h5>
+                </div>
+
+                <div class="cart-summary" *ngIf="!cartData.length">
+                  <small>Seems like your cart is empty!</small>
+                </div>
+                <div class="cart-btns">
+                  <a routerLink="/cart">View Cart</a>
+                  <a routerLink="/checkout"
+                    >Checkout <i class="fa fa-arrow-circle-right"></i
+                  ></a>
                 </div>
               </div>
-              <div class="cart-summary">
-                <small>3 Item(s) selected</small>
-                <h5>SUBTOTAL: {{ 0 | currency: "USD" }}</h5>
-              </div>
-              <div class="cart-btns">
-                <a routerLink="/cart">View Cart</a>
-                <a routerLink="/checkout"
-                  >Checkout <i class="fa fa-arrow-circle-right"></i
-                ></a>
-              </div>
             </div>
+            <!-- /Cart -->
           </div>
-          <!-- /Cart -->
         </div>
+        <!-- /ACCOUNT -->
       </div>
-      <!-- /ACCOUNT -->
+      <!-- row -->
     </div>
-    <!-- row -->
+    <!-- container -->
   </div>
-  <!-- container -->
-</div>
-<!-- /MAIN HEADER -->
-<!-- /HEADER -->
+  <!-- /MAIN HEADER -->
+  <!-- /HEADER -->
 
-<!-- NAVIGATION -->
-<nav id="navigation">
-  <!-- container -->
-  <div class="container">
-    <!-- responsive-nav -->
-    <div id="responsive-nav">
-      <!-- NAV -->
-      <ul class="main-nav nav py-3">
-        <li class="active"><a routerLink="/">Home</a></li>
-        <li><a routerLink="/">Chinese</a></li>
-        <li><a routerLink="/">Indian</a></li>
-        <li><a routerLink="/">Thai</a></li>
-        <li><a routerLink="/">English Classics</a></li>
-        <li><a routerLink="/">Arabic</a></li>
-        <li><a routerLink="/">Mediterranean</a></li>
-      </ul>
-      <!-- /NAV -->
+  <!-- NAVIGATION -->
+  <nav id="navigation">
+    <!-- container -->
+    <div class="container">
+      <!-- responsive-nav -->
+      <div id="responsive-nav">
+        <!-- NAV -->
+        <ul class="main-nav nav py-3">
+          <li class="active"><a routerLink="/">Home</a></li>
+          <li><a routerLink="/">Chinese</a></li>
+          <li><a routerLink="/">Indian</a></li>
+          <li><a routerLink="/">Thai</a></li>
+          <li><a routerLink="/">English Classics</a></li>
+          <li><a routerLink="/">Arabic</a></li>
+          <li><a routerLink="/">Mediterranean</a></li>
+        </ul>
+        <!-- /NAV -->
+      </div>
+      <!-- /responsive-nav -->
     </div>
-    <!-- /responsive-nav -->
-  </div>
-  <!-- /container -->
-</nav>
+    <!-- /container -->
+  </nav>
 
-<!-- <div class="header">
+  <!-- <div class="header">
   <nav class="header_top">
     <div class="header_menu">
       <div class="header_menu_icon" routerLink="/">
@@ -197,3 +217,4 @@
     </div>
   </nav>
 </div> -->
+</div>
