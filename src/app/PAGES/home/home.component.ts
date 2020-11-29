@@ -26,7 +26,9 @@ export class HomeComponent implements OnInit {
 
   updateCart() {
     this.api.getAllProducts().subscribe((resp) => {
-      this.products = resp;
+      this.products = resp.sort(function (a: any, b: any) {
+        return 0.5 - Math.random();
+      });
     });
   }
 

@@ -4540,7 +4540,7 @@ input[type="submit"].btn-block {
 .card-img-top {
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
-  padding: 30px;
+  padding: 50px;
 }
 .card-img,
 .card-img-bottom {
