@@ -118,12 +118,10 @@ export class ShoppingCartService {
   };
 
   removeItem = (p: any) => {
-    console.log('calling remover ', p);
     let items = this.get_shopping_cart_items();
 
     const index = items.findIndex((item: any) => item.name == p.name);
     if (index >= 0) {
-      console.log('hitting if');
       items[index].quantity -= 1;
       items[index].subtotal = items[index].quantity * items[index].price;
 
@@ -147,7 +145,6 @@ export class ShoppingCartService {
 
     const index = items.findIndex((item: any) => item.name == p.name);
     if (index >= 0) {
-      console.log('hitting if');
       items.splice(index, 1);
 
       this.toast.info(`${p.name} removed from the cart`, 'Product Updated', {

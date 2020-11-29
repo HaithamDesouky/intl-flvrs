@@ -35,7 +35,6 @@ export class CategoriesComponent implements OnInit {
 
   updateCart() {
     this.api.getAllProducts().subscribe((resp) => {
-      console.log(this.filter);
       this.products = resp.filter(
         (item: any) => item.category.toLowerCase() === this.filter.toLowerCase()
       );

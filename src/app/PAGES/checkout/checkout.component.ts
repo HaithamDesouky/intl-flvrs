@@ -22,7 +22,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   deleteEventHandler(p: any) {
-    console.log('event handled');
     this.getShoppingCart();
   }
 }

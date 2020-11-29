@@ -37,9 +37,7 @@ export class SearchComponent implements OnInit {
     let categoryVal = this.filter.split('?')[1];
 
     if (searchVal && categoryVal) {
-      console.log('both');
       this.api.getAllProducts().subscribe((resp) => {
-        console.log(this.filter);
         this.products = resp.filter(
           (item: any) =>
             item.name.toLowerCase().includes(searchVal.toLowerCase()) &&
@@ -47,9 +45,7 @@ export class SearchComponent implements OnInit {
         );
       });
     } else if (searchVal) {
-      console.log('only search');
       this.api.getAllProducts().subscribe((resp) => {
-        console.log(this.filter);
         this.products = resp.filter((item: any) =>
           item.name.toLowerCase().includes(searchVal.toLowerCase())
         );

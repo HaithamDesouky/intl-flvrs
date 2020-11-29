@@ -35,7 +35,6 @@ export class OrderService {
   });
 
   createOrder(data: any) {
-    console.log('making order', data);
     return new Promise<any>((resolve, reject) => {
       this.firestore
         .collection('orders')

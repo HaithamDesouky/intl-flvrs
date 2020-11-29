@@ -39,7 +39,6 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
     this.cartData = this.getCartContent();
     this.cartTotal = this.shoppingCart.getTotal();
-    console.log(this.cartData, 'from checkout comp');
   }
 
   getCartContent() {
@@ -59,8 +58,6 @@ export class CheckoutComponent implements OnInit {
     this.orderService.form.value.Order = this.cartData;
     let data = this.orderService.form.value;
 
-    this.orderService.createOrder(data).then((res) => {
-      console.log('done');
-    });
+    this.orderService.createOrder(data).then((res) => {});
   }
 }
