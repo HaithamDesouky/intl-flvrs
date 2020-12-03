@@ -272,7 +272,7 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
-    production: false,
+    production: true,
     apiUrl: 'https://localhost:5001/api/',
 };
 /*
@@ -1190,9 +1190,7 @@ class HomeComponent {
     }
     updateCart() {
         this.api.getAllProducts().subscribe((resp) => {
-            this.products = resp.sort(function (a, b) {
-                return 0.5 - Math.random();
-            });
+            this.products = resp;
         });
     }
     selectProduct(id) {

@@ -68,6 +68,7 @@ namespace API
       });
       services.AddControllers();
       services.AddCors();
+      
  
     }
 
@@ -83,7 +84,13 @@ namespace API
 
       app.UseRouting();
 
-      app.UseCors( policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+      // app.UseCors( policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+      app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed((host) => true)
+                .AllowCredentials()
+            );
 
       app.UseAuthorization();
 
