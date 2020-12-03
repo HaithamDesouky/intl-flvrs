@@ -10,7 +10,6 @@ import {
 import { HeaderComponent } from './COMPONENTS/header/header.component';
 import { HomeComponent } from './PAGES/home/home.component';
 import { FooterComponent } from './COMPONENTS/footer/footer.component';
-import { LoginComponent } from './PAGES/login/login.component';
 import { BannerComponent } from './COMPONENTS/banner/banner.component';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,7 +31,6 @@ import { SearchComponent } from './COMPONENTS/search/search.component';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    LoginComponent,
     BannerComponent,
     ProductsComponent,
     CartComponent,
