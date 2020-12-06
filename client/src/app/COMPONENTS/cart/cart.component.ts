@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from 'src/app/SERVICES/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
-// import { CartModelServer } from '../../models/cart.model';
+import { Cart, Product } from 'src/app/Models/product.model';
 
 @Component({
   selector: 'mg-cart',
@@ -28,8 +27,8 @@ export class CartComponent implements OnInit {
     this.cartTotal = this.shoppingCart.getTotal();
   }
 
-  ChangeQuantity(increment: number, product: any) {
-    this.shoppingCart.changeQuantity(increment, product);
+  ChangeQuantity(product: Product, increment: number) {
+    this.shoppingCart.changeQuantity(product, increment);
     this.cartData = this.shoppingCart.get_shopping_cart_items();
     this.updateTotal();
   }

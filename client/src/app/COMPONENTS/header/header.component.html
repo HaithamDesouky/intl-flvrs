@@ -2,10 +2,10 @@
   <div class="container">
     <ul class="header-links pull-left">
       <li>
-        <a href="#"><i class="fa fa-phone"></i> 633736571</a>
+        <a href="#"><i class="fa fa-phone"></i> 34545345</a>
       </li>
       <li>
-        <a href="#"
+        <a href="mailto:haithamadesouky@gmail.com"
           ><i class="fa fa-envelope-o"></i> haithamadesouky@gmail.com</a
         >
       </li>
@@ -58,6 +58,7 @@
               class="input"
               placeholder="Search here"
               formControlName="searchValue"
+              (keyup.enter)="onSubmit()"
             />
             <button
               type="button"
@@ -135,9 +136,10 @@
                 </div>
                 <div class="cart-btns">
                   <a routerLink="/cart">View Cart</a>
-                  <a routerLink="/checkout"
+                  <a *ngIf="cartData.length" routerLink="/checkout"
                     >Checkout <i class="fa fa-arrow-circle-right"></i
                   ></a>
+                  <a href="/" *ngIf="!cartData.length">Go to shop</a>
                 </div>
               </div>
             </div>
@@ -175,61 +177,4 @@
     </div>
     <!-- /container -->
   </nav>
-
-  <!-- <div class="header">
-  <nav class="header_top">
-    <div class="header_menu">
-      <div class="header_menu_icon" routerLink="/">
-        <mat-icon>menu</mat-icon>
-      </div>
-      <img
-        routerLink="/"
-        src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-        class="header_menu_logo"
-        alt=""
-      />
-      <div class="header_menu_searchbar">
-        <input type="text" class="header_menu_input" />
-        <div class="header_menu_searchbar_icon">
-          <mat-icon>search</mat-icon>
-        </div>
-      </div>
-      <div routerLink="/login" class="header_menu_signin">
-        <span
-          (click)="signOut()"
-          class="header_menu_top_item"
-          *ngIf="auth.isLoggedIn()"
-          >Hello, {{ auth.getUser() }} click here to
-        </span>
-        <span
-          routerLink="/login"
-          class="header_menu_top_item"
-          *ngIf="!auth.isLoggedIn()"
-          >Hello, there!</span
-        >
-        <span *ngIf="auth.isLoggedIn()" class="header_menu_bottom_item"
-          >Click here to log out</span
-        >
-
-        <span *ngIf="!auth.isLoggedIn()" class="header_menu_bottom_item"
-          >Sign Up | Log In</span
-        >
-      </div>
-      <div routerLink="/login" class="header_menu_signin">
-        <span class="header_menu_top_item">Returns</span>
-        <span class="header_menu_bottom_item">& Orders</span>
-      </div>
-      <div routerLink="/checkout" class="header_menu_cart">
-        <mat-icon>shopping_cart</mat-icon>
-        <p class="header_cart_number">{{ shoppingCart.getCartLength() }}</p>
-      </div>
-    </div>
-  </nav>
-  <nav class="header_bottom">
-    <div class="header_bottom_location_text">
-      <span class="header_left_line_one">Delivery to</span>
-      <span class="header_left_line_two"> <Strong>Canada</Strong></span>
-    </div>
-  </nav>
-</div> -->
 </div>

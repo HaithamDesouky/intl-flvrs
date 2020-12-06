@@ -1,8 +1,7 @@
 namespace API.Entities
 {
-    public class Product
+    public class Product : BaseEntity
     {
-     public int id { get; set; }
      public string name { get; set; }
      public string description { get; set; }
 
@@ -13,6 +12,7 @@ namespace API.Entities
      public int stock { get; set; }
 
      public string category { get; set; }
+
         
     }
 }

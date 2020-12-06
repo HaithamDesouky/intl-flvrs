@@ -1,39 +1,59 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Product } from '../MODELS/product.model';
+import { Product } from '../Models/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   baseUrl = environment.apiUrl;
+  products: Product[] = [];
 
   constructor(private http: HttpClient) {}
 
   getAllProducts() {
-    return this.http.get<Product[]>(this.baseUrl + 'products');
+    if (this.products.length > 0) return of(this.products);
+
+    return this.http.get<Product[]>(this.baseUrl + 'products').pipe(
+      map((products) => {
+        this.products = products;
+        return products;
+      })
+    );
+  }
+
+  getSortedProducts(sort: string) {
+    if (sort) {
+      return this.http.get<Product[]>(this.baseUrl + 'products' + sort).pipe(
+        map((products) => {
+          this.products = products;
+          return products;
+        })
+      );
+    } else {
+      return this.http.get<Product[]>(this.baseUrl + 'products').pipe(
+        map((products) => {
+          this.products = products;
+          return products;
+        })
+      );
+    }
   }
 
   getSingleProduct(id: number) {
     return this.http.get<Product>(this.baseUrl + 'products/' + id);
   }
+
+  getCategoryProducts(category: string) {
+    return this.http.get<Product[]>(this.baseUrl + 'products').pipe(
+      map((products) => {
+        return products.filter(
+          (items) => items.category.toLowerCase() === category.toLowerCase()
+        );
+      })
+    );
+  }
 }
-
-// import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-// import { Product } from '../MODELS/product.model';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class ProductService {
-//   private _jsonURL = 'assets/DATA/products.json';
-//   constructor(private Http: HttpClient) {}
-
-//   getAllProducts(): Observable<any> {
-//     let result = this.Http.get(this._jsonURL);
-//     return result;
-//   }
-// }

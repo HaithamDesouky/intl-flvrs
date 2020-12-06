@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/SERVICES/auth.service';
+import { AuthService } from 'src/app/Services/auth.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { ShoppingCartService } from 'src/app/SERVICES/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
+import { Product } from 'src/app/Models/product.model';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,8 @@ import { ShoppingCartService } from 'src/app/SERVICES/shopping-cart.service';
 export class HeaderComponent implements OnInit {
   SearchForm!: FormGroup;
   cartTotal: number;
-  cartData: any;
-  searchValue: any;
+  cartData: Product[];
+  searchValue: string = '';
 
   constructor(
     public shoppingCart: ShoppingCartService,

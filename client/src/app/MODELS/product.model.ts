@@ -6,4 +6,12 @@ export interface Product {
   image: String;
   price: number;
   stock: number;
+  quantity?: number;
+  subtotal?: number;
+  total?: number;
+}
+
+export interface Cart {
+  products: Product[];
+  total: number;
 }

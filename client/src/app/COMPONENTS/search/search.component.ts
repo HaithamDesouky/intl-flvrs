@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/SERVICES/products.service';
+import { ProductService } from 'src/app/Services/products.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/MODELS/product.model';
-import { ShoppingCartService } from 'src/app/SERVICES/shopping-cart.service';
+import { Product } from 'src/app/Models/product.model';
+import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
 

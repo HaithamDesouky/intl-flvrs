@@ -7,23 +7,21 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './COMPONENTS/header/header.component';
-import { HomeComponent } from './PAGES/home/home.component';
-import { FooterComponent } from './COMPONENTS/footer/footer.component';
-import { BannerComponent } from './COMPONENTS/banner/banner.component';
-import { MatCardModule } from '@angular/material/card';
+import { HeaderComponent } from './Components/header/header.component';
+import { HomeComponent } from './Components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductsComponent } from './COMPONENTS/products/products.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
-import { firebaseConfig } from './CONFIG/firebase.config';
-import { CartComponent } from './COMPONENTS/cart/cart.component';
-import { ThankyouComponent } from './COMPONENTS/thankyou/thankyou.component';
+import { firebaseConfig } from './Config/firebase.config';
+import { CartComponent } from './Components/cart/cart.component';
+import { ThankyouComponent } from './Components/thankyou/thankyou.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
-import { CheckoutComponent } from './COMPONENTS/checkout/checkout.component';
-import { CategoriesComponent } from './COMPONENTS/categories/categories.component';
-import { SearchComponent } from './COMPONENTS/search/search.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { CategoriesComponent } from './Components/categories/categories.component';
+import { SearchComponent } from './Components/search/search.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { ProductComponent } from './Components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +29,12 @@ import { SearchComponent } from './COMPONENTS/search/search.component';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    BannerComponent,
-    ProductsComponent,
     CartComponent,
     ThankyouComponent,
     CheckoutComponent,
     CategoriesComponent,
     SearchComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +42,6 @@ import { SearchComponent } from './COMPONENTS/search/search.component';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatIconModule,
-    MatCardModule,
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),

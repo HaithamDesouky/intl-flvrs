@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/SERVICES/products.service';
+import { ProductService } from 'src/app/Services/products.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/MODELS/product.model';
-import { ShoppingCartService } from 'src/app/SERVICES/shopping-cart.service';
+import { Product } from 'src/app/Models/product.model';
+import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +16,10 @@ import { map } from 'rxjs/operators';
 export class CategoriesComponent implements OnInit {
   products: Product[] = [];
   NewsLetterForm!: FormGroup;
-  filter: any;
+  category: string;
 
   constructor(
-    private api: ProductService,
+    private productService: ProductService,
     private route: ActivatedRoute,
     private routerR: Router,
     private shopping_cart: ShoppingCartService
@@ -26,33 +27,35 @@ export class CategoriesComponent implements OnInit {
     this.routerR.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    this.filter = this.route.snapshot.params.category;
+    this.category = this.route.snapshot.params.category;
   }
 
   ngOnInit(): void {
-    this.updateCart();
+    this.getCategoryProducts(this.category);
   }
 
-  updateCart() {
-    this.api.getAllProducts().subscribe((resp) => {
-      this.products = resp.filter(
-        (item: any) => item.category.toLowerCase() === this.filter.toLowerCase()
-      );
-    });
+  getCategoryProducts(category: string) {
+    return this.productService
+      .getCategoryProducts(category)
+      .subscribe((response) => {
+        (this.products = response), console.log(response);
+      });
   }
 
   getSingleProduct(id: Number) {
-    return this.products.find((prod) => prod.id === id);
+    // return this.products.find((prod) => prod.id === id);
   }
 
-  getSingleCategory(category: String) {
-    return this.products.filter((prod) => prod.category === category);
-  }
-
-  addToCart(p: any) {
+  addToCart(p: Product) {
     this.shopping_cart.addProduct(p);
 
-    this.updateCart();
+    // this.updateCart();
     this.shopping_cart.getTotal();
   }
 }
+
+//  this.api.getAllProducts().subscribe((resp) => {
+//    this.products = resp.filter(
+//      (item: any) => item.category.toLowerCase() === this.filter.toLowerCase()
+//    );
+//  });

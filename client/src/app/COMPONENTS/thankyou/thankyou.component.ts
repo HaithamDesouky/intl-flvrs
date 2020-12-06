@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderService } from 'src/app/SERVICES/order.service';
-import { ShoppingCartService } from 'src/app/SERVICES/shopping-cart.service';
+import { OrderService } from 'src/app/Services/order.service';
+import { ShoppingCartService } from 'src/app/Services/shopping-cart.service';
 
 @Component({
   selector: 'mg-thankyou',
@@ -32,5 +32,7 @@ export class ThankyouComponent implements OnInit {
     this.cartTotal = state.total;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('thank you', this.products);
+  }
 }
