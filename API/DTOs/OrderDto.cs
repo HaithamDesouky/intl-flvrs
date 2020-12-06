@@ -22,7 +22,7 @@ namespace API.DTOs
     public string OrderNotes { get; set; }
     public DateTimeOffset OrderDate {get; set;} = DateTimeOffset.Now;
     public IEnumerable<Product> Products {get; set;}
-    public decimal Total { get; set; }
+    public int Total { get; set; }
     public string PaymentIntentId { get; set; }
   }
 }
