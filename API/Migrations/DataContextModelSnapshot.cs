@@ -53,8 +53,8 @@ namespace API.Migrations
                     b.Property<string>("Telephone")
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("numeric");
+                    b.Property<int>("Total")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Zipcode")
                         .HasColumnType("text");

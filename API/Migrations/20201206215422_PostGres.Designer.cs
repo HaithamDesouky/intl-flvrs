@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201206214547_PostGres")]
+    [Migration("20201206215422_PostGres")]
     partial class PostGres
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,8 +55,8 @@ namespace API.Migrations
                     b.Property<string>("Telephone")
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("numeric");
+                    b.Property<int>("Total")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Zipcode")
                         .HasColumnType("text");
